@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+  
+body {
+    line-height: 1.4;
+    background-color: #dadada;
+}
+
+.wrapper {
+    padding: 0 1rem;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.addTodo-container {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    margin: 5px 0;
+} 
+
+.addTodo-input {
+    flex: 10;
+    padding: 10px;
+}
+
+.btn {
+    flex: 1;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    padding: 7px 10px;
+}
+
+.btn-add {
+    flex: 1;
+    background-color: #0275d8;
+    
+}
+  
+.btn-add:hover {
+    background-color: #2181c2;
+}
+
+.todoList {
+    list-style-type:none;
+}
+
+.todoItem {
+    background-color: #f4f4f4;
+    padding: 10px; 
+    border-bottom: 1px #ccc dotted;
+}
+
+li.completed span {
+    text-decoration: line-through;
+}
+.deleteTodo {
+    float: right;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+
+@media only screen and (min-width: 768px){
+    .wrapper {
+        padding: 0;
+        width: 50vw;
+        margin: auto;
+    }
+}
