@@ -13,6 +13,14 @@ $(function() {
 
     loadData();
     updateView();
+
+    function loadData() {
+        // Chargement des données
+        const storedData = localStorage.getItem('todoData');
+        if(storedData != null){
+            todosData = JSON.parse(storedData);
+        }
+    }
   
     $addTodo.on('submit', function (e) {
         e.preventDefault();
@@ -24,31 +32,9 @@ $(function() {
             updateView();
         }
         
-        // La même sans variables
-        // $todoList.append(
-        //     $('<li>' + text + '</li>').addClass('todoItem')
-        // );
-
-        // Par texte directement
-        // $todoList.append('<li class="todoItem">' + text + '</li>').addClass('todoItem');
-
-        // Donne classe à la liste (ul)
-        // $todoList.append('<li>' + text + '</li>').addClass('todoItem');
-
         $('input:text').val('');
     });
     
-    function createTodoElement(todoData){
-        // On créé, puis on append
-        const $todo = $(`
-        <li class="todoItem" data-todo-id="${todoData.id}"> 
-            <input class="toggleTodo ${todoData.completed ? 'checked' : ''}" type="checkbox" ${todoData.completed ? 'checked="checked"' : ''}"/> 
-            <span>${todoData.text}</span> 
-            <button class="deleteTodo">X</button>
-        </li>`);
-        $todoList.append($todo);
-    }
-
     function createTodoData(text){
         const todoData = {
             id: createID(),
@@ -62,28 +48,6 @@ $(function() {
         return todoData;
     }
 
-    // Fonction responsable de synchroniser la page html avec le tableau todoData
-    function updateView(){
-        $todoList.html('');
-
-        for(let todoData of todosData){
-            createTodoElement(todoData);
-        }
-    }
-
-    function saveData(){
-        // Save
-        localStorage.setItem('todoData', JSON.stringify(todosData));
-    }
-
-    function loadData(){
-        // Chargement des données
-        const maybeSavedData = localStorage.getItem('todoData');
-        if(maybeSavedData != null){
-            todosData = JSON.parse(maybeSavedData);
-        }
-    }
-
     function createID(){
         let newID = -1;
         const usedIDs = todosData.map(data => data.id);
@@ -94,8 +58,34 @@ $(function() {
 
         return newID;
     }
+
     function _createID(){
         return Math.floor(Math.random() * 1000);
+    }
+
+    // Fonction responsable de synchroniser la page html avec le tableau todosData
+    function updateView(){
+        $todoList.html('');
+
+        for(let todoData of todosData){
+            createTodoElement(todoData);
+        }
+    }
+
+    function createTodoElement(todoData){
+        // On créé, puis on append
+        const $todo = $(`
+        <li class="todoItem" data-todo-id="${todoData.id}"> 
+            <input class="toggleTodo ${todoData.completed ? 'checked' : ''}" type="checkbox" ${todoData.completed ? 'checked="checked"' : ''}"/> 
+            <span>${todoData.text}</span> 
+            <button class="deleteTodo">X</button>
+        </li>`);
+        $todoList.append($todo);
+    }
+
+    function saveData(){
+        // Save
+        localStorage.setItem('todoData', JSON.stringify(todosData));
     }
 
     $(document).on('click', '.deleteTodo', function() {
@@ -107,7 +97,8 @@ $(function() {
     });
 
     function deleteTodo(id) {
-        todosData = todosData.filter(todoData.id !== id);
+        todosData = todosData.filter(todoData => todoData.id !== id);
+
         saveData();
         updateView();
     }
@@ -119,6 +110,14 @@ $(function() {
             $(this).attr('checked', 'checked').addClass('checked');
         }
         $(this).parent().toggleClass('completed');
-        localStorage.setItem('todoList', $('.todoList').html());
+        // localStorage.setItem('todoList', $('.todoList').html());
     });
+
+    function toggleTodo(id) {
+        todosData = [...todosData].find(todoData => todoData.id === id)
+        todoData.completed = !todoData.completed
+        
+        saveData();
+        updateView();
+      }
 });
