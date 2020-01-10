@@ -61,7 +61,7 @@ export function clearCompletedTodos() {
 
 export function createID(){
     let newID = -1;
-    const usedIDs = todosData.map(data => data.id);
+    const usedIDs = todosData.map(todoData => todoData.id);
 
     do {
         newID = _createID();

@@ -71,6 +71,7 @@ li.completed .todo-title {
     cursor: pointer;
     border: none;
     padding: 5px 10px;
+    background-color: #f4f4f4;
 }
 
 .leftTodo {
