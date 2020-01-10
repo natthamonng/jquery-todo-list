@@ -17,3 +17,13 @@
 
 // Donne classe à la liste (ul)
     $todoList.append('<li>' + text + '</li>').addClass('todoItem');
+
+$(document).on('change', '.toggleTodo', function() {
+    if ($(this).attr('checked')) {
+        $(this).removeAttr('checked').removeClass('checked');
+    } else {
+        $(this).attr('checked', 'checked').addClass('checked');
+    }
+    $(this).parent().toggleClass('completed');
+    localStorage.setItem('todoList', $('.todoList').html());
+    });
