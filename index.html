@@ -5,22 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9b18ba69c6.js" crossorigin="anonymous"></script>
     <title>JQuery-Todo List</title>
 </head>
 <body>
     <div class="wrapper">
         <header>Todo List</header>
 
-        <form id="addTodo" class="addTodo-container">
+        <form id="addTodo" class="container">
             <input class="addTodo-input" type="text" placeholder="Add Todo ..." />
             <button class="btn btn-add" type="submit">Submit</button>
         </form>
 
         <ul class="todoList"></ul>
+
+        <section class="container container-leftTodo">
+            <div class="leftTodo"> <span></span> left to do</div>
+            <button class="btn btn-clear clearCompleted">Clear Completed</button>
+        </section>
     </div>
     
     <!--JQuery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="app.js"></script>
+    <!-- <script src="dataSvc.js"></script>
+    <script src="view.js"></script> -->
+    <script src="app.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/9b18ba69c6.js" crossorigin="anonymous"></script>
 </body>
 </html>
