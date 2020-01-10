@@ -66,6 +66,10 @@ li.completed .todo-title {
     text-decoration: line-through;
 }
 
+.todo-title:hover, .toggleTodo {
+    cursor: pointer;
+}
+
 .btn-del {
     float: right;
     cursor: pointer;
