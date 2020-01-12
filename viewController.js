@@ -1,11 +1,11 @@
-import { getData, getIncompleteTodos } from "./dataSvc.js";
+import { getData, getIncompleteTodos } from "./dataService.js";
 
-let $todoList = $('.todoList');
+const $todoList = $('.todoList');
 
 /**
  * View
  */
-// Fonction responsable de synchroniser la page html avec le tableau todosData
+// Function responsible for synchronizing the html page with the todosData array
 export function updateView(){
     $todoList.html('');
 
@@ -26,11 +26,11 @@ export function updateView(){
 }
 
 export function createTodoElement(todoData){
-    // On créé, puis on append
+    // We create, then we append
     const $todo = $(`
     <li class="todoItem ${todoData.completed ? 'completed' : ''}" data-todo-id="${todoData.id}"> 
-        <input id="checkbox-${todoData.id}" class="toggleTodo ${todoData.completed ? 'checked' : ''}" type="checkbox" ${todoData.completed ? 'checked="checked"' : ''}"/> 
-        <label for="checkbox-${todoData.id}" class="todo-title">${todoData.text}</label> 
+        <input id="checkbox-${todoData.id}" class="toggleTodo" type="checkbox" ${todoData.completed ? 'checked' : ''} /> 
+        <label for="checkbox-${todoData.id}" class="todo-title">${todoData.title}</label> 
         <button class="deleteTodo btn-del"><i class="far fa-trash-alt"></i></button>
     </li>`);
     $todoList.append($todo);

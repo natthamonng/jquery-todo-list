@@ -1,15 +1,15 @@
-import { loadData, createTodoData, toggleTodo, deleteTodo, clearCompletedTodos } from "./dataSvc.js";
-import { updateView, getTodoElementId } from "./view.js";
+import { loadData, createTodoData, toggleTodo, deleteTodo, clearCompletedTodos } from "./dataService.js";
+import { updateView, getTodoElementId } from "./viewController.js";
 
 $(function() {
     /**
      * Variable declaration
      */
-    let $addTodo = $('#addTodo');
+    const $addTodo = $('#addTodo');
     const $clearCompleted = $('.clearCompleted');
 
     /**
-     * App entrypoint
+     * App entry point
      */
     loadData();
     updateView();
@@ -17,13 +17,13 @@ $(function() {
     /**
      * Event Listeners
      */
-    $addTodo.on('submit', function (e) {
-        e.preventDefault();
+    $addTodo.on('submit', function (event) {
+        event.preventDefault();
         
-        let text = $('input:text').val();
+        let title = $('input:text').val();
 
-        if(text !== "") {
-            createTodoData(text);
+        if(title !== "") {
+            createTodoData(title);
             updateView();
         }
         

@@ -1,5 +1,8 @@
-// Valeur par défaut
+/**
+* Variable declaration
+*/
 let todosData = [];
+const LOCAL_STORAGE_KEY = 'jquery-todo-list'
 
 export function getData(){
     return todosData;
@@ -10,7 +13,7 @@ export function getData(){
  */
 export function loadData() {
     // Chargement des données
-    const storedData = localStorage.getItem('todoData');
+    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if(storedData != null) {
         todosData = JSON.parse(storedData);
     }
@@ -18,13 +21,13 @@ export function loadData() {
 
 export function saveData(){
     // Save
-    localStorage.setItem('todoData', JSON.stringify(todosData));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todosData));
 }
 
-export function createTodoData(text){
+export function createTodoData(title){
     const todoData = {
         id: createID(),
-        text,
+        title,
         completed: false
     };
 
@@ -63,6 +66,7 @@ export function createID(){
     let newID = -1;
     const usedIDs = todosData.map(todoData => todoData.id);
 
+    //call _createID function while index of newID that passed in is higher than -1 which means it's already exist.
     do {
         newID = _createID();
     } while (usedIDs.indexOf(newID) > -1);

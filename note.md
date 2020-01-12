@@ -1,7 +1,7 @@
 // On créé, puis on append
     const $todo = $(`
     <li class="todoItem" data-todo-id="${todoData.id}"> 
-        <input class="toggleTodo ${todoData.completed ? 'checked' : ''}" type="checkbox" ${todoData.completed ? 'checked="checked"' : ''}"/> 
+        <input class="toggleTodo ${todoData.completed ? 'checked' : ''}" type="checkbox" ${todoData.completed ? 'checked="checked"' : ''}" /> 
         <span>${todoData.text}</span> 
         <button class="deleteTodo">X</button>
     </li>`);
